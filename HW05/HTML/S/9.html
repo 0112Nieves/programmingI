@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>brainfuck.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.7' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/brainfuck.c</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L5'>[^]</a><a href='#L23'>[v]</a>[top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L5' title='Defined at 5.'>num6</a></li>
+<li><a href='#L14' title='Defined at 14.'>num7</a></li>
+<li><a href='#L23' title='Defined at 23.'>csie_interpreter</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='sharp'>#include</em> "<a href='10.html'>brainfuck.h</a>"
+<a id='L2' name='L2'></a><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L3' name='L3'></a><em class='sharp'>#include</em> &lt;stdint.h&gt;
+<a id='L4' name='L4'></a>
+<a id='L5' name='L5'></a>int32_t <a href='../R/12.html' title='Multiple referred from 3 places.'>num6</a>( int32_t code )
+<a id='L6' name='L6'></a><em class='brace'>{</em>
+<a id='L7' name='L7'></a>        int32_t sum6 = 0;
+<a id='L8' name='L8'></a>        <strong class='reserved'>if</strong>( code == 6 )<em class='brace'>{</em>
+<a id='L9' name='L9'></a>                sum6++;
+<a id='L10' name='L10'></a>        <em class='brace'>}</em>
+<a id='L11' name='L11'></a>        <strong class='reserved'>return</strong> sum6;
+<a id='L12' name='L12'></a><em class='brace'>}</em>
+<a id='L13' name='L13'></a>
+<a id='L14' name='L14'></a>int32_t <a href='../R/13.html' title='Multiple referred from 2 places.'>num7</a>( int32_t code )
+<a id='L15' name='L15'></a><em class='brace'>{</em>
+<a id='L16' name='L16'></a>        int32_t sum7 = 0;
+<a id='L17' name='L17'></a>        <strong class='reserved'>if</strong>( code == 7 )<em class='brace'>{</em>
+<a id='L18' name='L18'></a>                sum7++;
+<a id='L19' name='L19'></a>        <em class='brace'>}</em>
+<a id='L20' name='L20'></a>        <strong class='reserved'>return</strong> sum7;
+<a id='L21' name='L21'></a><em class='brace'>}</em>       
+<a id='L22' name='L22'></a>
+<a id='L23' name='L23'></a><strong class='reserved'>void</strong> <a href='../R/8.html' title='Multiple referred from 2 places.'>csie_interpreter</a>(<strong class='reserved'>const</strong> uint8_t code[], size_t size, size_t mem_limit)
+<a id='L24' name='L24'></a><em class='brace'>{</em>
+<a id='L25' name='L25'></a>        int32_t *data_ptr;
+<a id='L26' name='L26'></a>        int32_t count6[size], count7[size];
+<a id='L27' name='L27'></a>        int32_t tmp = 0;
+<a id='L28' name='L28'></a>        int32_t now = 0;
+<a id='L29' name='L29'></a>        int32_t counter = 0;
+<a id='L30' name='L30'></a>        int32_t input = 0;
+<a id='L31' name='L31'></a>        int32_t j = 0;
+<a id='L32' name='L32'></a>        int32_t counter7 = 0;
+<a id='L33' name='L33'></a>        
+<a id='L34' name='L34'></a>        <em class='comment'>//count 6 and 7 number</em>
+<a id='L35' name='L35'></a>        <strong class='reserved'>for</strong>( int32_t i = 0 ; i &lt; size ; i++ )<em class='brace'>{</em>
+<a id='L36' name='L36'></a>                <strong class='reserved'>if</strong>( code[i] == 6 )<em class='brace'>{</em>
+<a id='L37' name='L37'></a>                        count6[tmp] = i;
+<a id='L38' name='L38'></a>                        tmp++;
+<a id='L39' name='L39'></a>                <em class='brace'>}</em>
+<a id='L40' name='L40'></a>                <strong class='reserved'>if</strong>( code[i] == 7 )<em class='brace'>{</em>
+<a id='L41' name='L41'></a>                tmp--;
+<a id='L42' name='L42'></a>                printf( "%d\n" , count6[tmp] );
+<a id='L43' name='L43'></a>                <em class='comment'>/*</em>
+<a id='L44' name='L44'></a><em class='comment'>                        if( count6[tmp] != -1 ){</em>
+<a id='L45' name='L45'></a><em class='comment'>                                count7[j] = count6[now];</em>
+<a id='L46' name='L46'></a><em class='comment'>                                printf( "%d\n" , count6[now] );</em>
+<a id='L47' name='L47'></a><em class='comment'>                                count6[tmp] = -1;</em>
+<a id='L48' name='L48'></a><em class='comment'>                        }</em>
+<a id='L49' name='L49'></a><em class='comment'>                        else{*/</em>
+<a id='L50' name='L50'></a>                                count7[j] = count6[tmp];
+<a id='L51' name='L51'></a>                                count6[tmp] = -1;
+<a id='L52' name='L52'></a>                        <em class='comment'>//}</em>
+<a id='L53' name='L53'></a>                        j++;
+<a id='L54' name='L54'></a>                <em class='brace'>}</em>
+<a id='L55' name='L55'></a>        <em class='brace'>}</em>
+<a id='L56' name='L56'></a>        
+<a id='L57' name='L57'></a>        <em class='comment'>/*for( int32_t i = 0 ; i &lt; j ; i++ ){</em>
+<a id='L58' name='L58'></a><em class='comment'>                printf( "%d count6: %d , count7: %d\n" , i, count6[i], count7[i] );</em>
+<a id='L59' name='L59'></a><em class='comment'>        }*/</em>
+<a id='L60' name='L60'></a>        <em class='comment'>/*</em>
+<a id='L61' name='L61'></a><em class='comment'>        printf( "tmp: %d\n" , tmp );</em>
+<a id='L62' name='L62'></a><em class='comment'>        printf( "now: %d\n" , now );</em>
+<a id='L63' name='L63'></a><em class='comment'>        for( int32_t i = 0 ; i &lt; tmp ; i++ ){</em>
+<a id='L64' name='L64'></a><em class='comment'>                printf( "count7 i: %d ,%d\n" , i, count7[i] );</em>
+<a id='L65' name='L65'></a><em class='comment'>        }*/</em>
+<a id='L66' name='L66'></a>                         
+<a id='L67' name='L67'></a>        <strong class='reserved'>while</strong>( counter &lt; size )<em class='brace'>{</em>
+<a id='L68' name='L68'></a>                <strong class='reserved'>switch</strong>( code[counter] )
+<a id='L69' name='L69'></a>                <em class='brace'>{</em>
+<a id='L70' name='L70'></a>                        <strong class='reserved'>case</strong> 0:
+<a id='L71' name='L71'></a>                                ++data_ptr;
+<a id='L72' name='L72'></a>                                <strong class='reserved'>if</strong>( data_ptr &gt; (uint8_t *)mem_limit )<em class='brace'>{</em>
+<a id='L73' name='L73'></a>                                        printf( "error!\n" );
+<a id='L74' name='L74'></a>                                        <strong class='reserved'>return</strong>;
+<a id='L75' name='L75'></a>                                <em class='brace'>}</em>
+<a id='L76' name='L76'></a>                                <strong class='reserved'>break</strong>;
+<a id='L77' name='L77'></a>                        <strong class='reserved'>case</strong> 1:
+<a id='L78' name='L78'></a>                                --data_ptr;
+<a id='L79' name='L79'></a>                                <strong class='reserved'>if</strong>( data_ptr &lt; 0 )<em class='brace'>{</em>
+<a id='L80' name='L80'></a>                                        printf( "error!\n" );
+<a id='L81' name='L81'></a>                                        <strong class='reserved'>return</strong>;
+<a id='L82' name='L82'></a>                                <em class='brace'>}</em>
+<a id='L83' name='L83'></a>                                <strong class='reserved'>break</strong>;
+<a id='L84' name='L84'></a>                        <strong class='reserved'>case</strong> 2:
+<a id='L85' name='L85'></a>                                ++ *data_ptr;
+<a id='L86' name='L86'></a>                                <strong class='reserved'>break</strong>;
+<a id='L87' name='L87'></a>                        <strong class='reserved'>case</strong> 3:
+<a id='L88' name='L88'></a>                                -- *data_ptr;
+<a id='L89' name='L89'></a>                                <strong class='reserved'>break</strong>;
+<a id='L90' name='L90'></a>                        <strong class='reserved'>case</strong> 4:
+<a id='L91' name='L91'></a>                                printf( "output: %d\n" , input );
+<a id='L92' name='L92'></a>                                <strong class='reserved'>break</strong>;
+<a id='L93' name='L93'></a>                        <strong class='reserved'>case</strong> 5:
+<a id='L94' name='L94'></a>                                printf( "input: " );
+<a id='L95' name='L95'></a>                                scanf( "%d" , &amp;input );
+<a id='L96' name='L96'></a>                                <strong class='reserved'>break</strong>;
+<a id='L97' name='L97'></a>                        <strong class='reserved'>case</strong> 6:
+<a id='L98' name='L98'></a>                                <a href='../D/13.html' title='Multiple defined in 2 places.'>num6</a>( *code );
+<a id='L99' name='L99'></a>                                <strong class='reserved'>if</strong>( *data_ptr == 0 )<em class='brace'>{</em>
+<a id='L100' name='L100'></a>                                        counter = count7[<a href='../D/13.html' title='Multiple defined in 2 places.'>num6</a>]++;
+<a id='L101' name='L101'></a>                                <em class='brace'>}</em>
+<a id='L102' name='L102'></a>                                <strong class='reserved'>break</strong>;
+<a id='L103' name='L103'></a>                        <strong class='reserved'>case</strong> 7:
+<a id='L104' name='L104'></a>                                <a href='../D/14.html' title='Multiple defined in 2 places.'>num7</a>( *code );
+<a id='L105' name='L105'></a>                                <strong class='reserved'>if</strong>( *data_ptr != 0 )<em class='brace'>{</em>
+<a id='L106' name='L106'></a>                                        counter = count7[counter7] + 1;
+<a id='L107' name='L107'></a>                                <em class='brace'>}</em>
+<a id='L108' name='L108'></a>                                <strong class='reserved'>break</strong>;
+<a id='L109' name='L109'></a>                        <strong class='reserved'>default</strong>:
+<a id='L110' name='L110'></a>                                <strong class='reserved'>break</strong>;
+<a id='L111' name='L111'></a>                <em class='brace'>}</em>
+<a id='L112' name='L112'></a>                counter++;
+<a id='L113' name='L113'></a>        <em class='brace'>}</em>
+<a id='L114' name='L114'></a>        printf( "total: %d\n" , *data_ptr );
+<a id='L115' name='L115'></a>        <strong class='reserved'>return</strong>;
+<a id='L116' name='L116'></a><em class='brace'>}</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L5'>[^]</a><a href='#L23'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>

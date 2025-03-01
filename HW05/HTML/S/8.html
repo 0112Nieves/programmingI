@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+<head>
+<title>hw0504.c</title>
+<meta name='robots' content='noindex,nofollow' />
+<meta name='generator' content='GLOBAL-6.6.7' />
+<meta http-equiv='Content-Style-Type' content='text/css' />
+<link rel='stylesheet' type='text/css' href='../style.css' />
+</head>
+<body>
+<a id='TOP' name='TOP'></a><h2 class='header'><a href='../mains.html'>root</a>/hw0504.c</h2>
+<em class='comment'>/* [&lt;][&gt;]<a href='#L14'>[^]</a>[v][top]<a href='#BOTTOM'>[bottom]</a><a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+<hr />
+<h2 class='header'>DEFINITIONS</h2>
+This source file includes following definitions.
+<ol>
+<li><a href='#L14' title='Defined at 14.'>main</a></li>
+</ol>
+<hr />
+<pre>
+<a id='L1' name='L1'></a><em class='sharp'>#include</em> &lt;stdbool.h&gt;
+<a id='L2' name='L2'></a><em class='sharp'>#include</em> &lt;stddef.h&gt;
+<a id='L3' name='L3'></a><em class='sharp'>#include</em> &lt;stdint.h&gt;
+<a id='L4' name='L4'></a><em class='sharp'>#include</em> &lt;stdio.h&gt;
+<a id='L5' name='L5'></a><em class='sharp'>#include</em> &lt;stdlib.h&gt;
+<a id='L6' name='L6'></a><em class='sharp'>#include</em> &lt;string.h&gt;
+<a id='L7' name='L7'></a><em class='sharp'>#include</em> "<a href='3.html'>division.h</a>"
+<a id='L8' name='L8'></a>
+<a id='L9' name='L9'></a>uint8_t xsize = 0, ysize = 0;
+<a id='L10' name='L10'></a>uint8_t *X, *Y;
+<a id='L11' name='L11'></a>uint8_t *Q, *R;
+<a id='L12' name='L12'></a>uint8_t qsize = 0, rsize = 0;
+<a id='L13' name='L13'></a>
+<a id='L14' name='L14'></a><strong class='reserved'>int</strong> main() <em class='brace'>{</em>
+<a id='L15' name='L15'></a>    printf("how many digits of x?");
+<a id='L16' name='L16'></a>    scanf("%hhu", &amp;xsize);
+<a id='L17' name='L17'></a>    X = calloc(xsize, <strong class='reserved'>sizeof</strong>(uint8_t));
+<a id='L18' name='L18'></a>    Q = calloc(xsize, <strong class='reserved'>sizeof</strong>(uint8_t));
+<a id='L19' name='L19'></a>    R = calloc(xsize, <strong class='reserved'>sizeof</strong>(uint8_t));
+<a id='L20' name='L20'></a>    printf("input the X\n");
+<a id='L21' name='L21'></a>    getchar();
+<a id='L22' name='L22'></a>    <strong class='reserved'>for</strong> (<strong class='reserved'>int</strong> i = 0; i &lt; xsize; ++i) <em class='brace'>{</em>
+<a id='L23' name='L23'></a>        <strong class='reserved'>char</strong> input;
+<a id='L24' name='L24'></a>        scanf("%c", &amp;input);
+<a id='L25' name='L25'></a>        X[i] = input - '0';
+<a id='L26' name='L26'></a>    <em class='brace'>}</em>
+<a id='L27' name='L27'></a>    printf("how many digits of y?");
+<a id='L28' name='L28'></a>    scanf("%hhu", &amp;ysize);
+<a id='L29' name='L29'></a>    Y = calloc(ysize, <strong class='reserved'>sizeof</strong>(uint8_t));
+<a id='L30' name='L30'></a>    printf("input the Y\n");
+<a id='L31' name='L31'></a>    getchar();
+<a id='L32' name='L32'></a>    <strong class='reserved'>for</strong> (<strong class='reserved'>int</strong> i = 0; i &lt; ysize; ++i) <em class='brace'>{</em>
+<a id='L33' name='L33'></a>        <strong class='reserved'>char</strong> input;
+<a id='L34' name='L34'></a>        scanf("%c", &amp;input);
+<a id='L35' name='L35'></a>        Y[i] = input - '0';
+<a id='L36' name='L36'></a>    <em class='brace'>}</em>
+<a id='L37' name='L37'></a>    <strong class='reserved'>for</strong> (<strong class='reserved'>int</strong> i = 0; i &lt; xsize; ++i) printf("%hhu", X[i]);
+<a id='L38' name='L38'></a>    printf("/");
+<a id='L39' name='L39'></a>    <strong class='reserved'>for</strong> (<strong class='reserved'>int</strong> i = 0; i &lt; ysize; ++i) printf("%hhu", Y[i]);
+<a id='L40' name='L40'></a>    printf("=\n");
+<a id='L41' name='L41'></a>    <a href='../D/9.html' title='Multiple defined in 2 places.'>division</a>(&amp;Q, &amp;qsize, &amp;R, &amp;rsize, X, xsize, Y, ysize);
+<a id='L42' name='L42'></a>    <strong class='reserved'>for</strong> (<strong class='reserved'>int</strong> i = 0; i &lt; qsize; ++i) printf("%hhu", Q[i]);
+<a id='L43' name='L43'></a>    printf("...");
+<a id='L44' name='L44'></a>    <strong class='reserved'>for</strong> (<strong class='reserved'>int</strong> i = 0; i &lt; rsize; ++i) printf("%hhu", R[i]);
+<a id='L45' name='L45'></a>    printf("\n");
+<a id='L46' name='L46'></a>    free(X);
+<a id='L47' name='L47'></a>    free(Y);
+<a id='L48' name='L48'></a>    free(Q);
+<a id='L49' name='L49'></a>    free(R);
+<a id='L50' name='L50'></a>    <strong class='reserved'>return</strong> 0;
+<a id='L51' name='L51'></a><em class='brace'>}</em>
+<a id='L52' name='L52'></a>
+<a id='L53' name='L53'></a><em class='comment'>/*#include &lt;stdio.h&gt;</em>
+<a id='L54' name='L54'></a><em class='comment'>#include &lt;stdint.h&gt;</em>
+<a id='L55' name='L55'></a><em class='comment'>#include "division.h"</em>
+<a id='L56' name='L56'></a><em class='comment'></em>
+<a id='L57' name='L57'></a><em class='comment'>int main()</em>
+<a id='L58' name='L58'></a><em class='comment'>{</em>
+<a id='L59' name='L59'></a><em class='comment'>        int32_t xSize, ySize;</em>
+<a id='L60' name='L60'></a><em class='comment'>        uint8_t *pX[], *pY[], **ppQuotient, *pQuotientSize, **ppRemainder, *pRemainderSize;</em>
+<a id='L61' name='L61'></a><em class='comment'>        </em>
+<a id='L62' name='L62'></a><em class='comment'>        printf( "x: " );</em>
+<a id='L63' name='L63'></a><em class='comment'>        for( int32_t i = 0 ; i &lt; xSize ; i++ ){</em>
+<a id='L64' name='L64'></a><em class='comment'>                scanf( "%c" , &amp; *pX[i] );</em>
+<a id='L65' name='L65'></a><em class='comment'>        }</em>
+<a id='L66' name='L66'></a><em class='comment'>        printf( "y: " );</em>
+<a id='L67' name='L67'></a><em class='comment'>        for( int32_t i = 0 ; i &lt; ySize ; i++ ){</em>
+<a id='L68' name='L68'></a><em class='comment'>                scanf( "%c" , &amp; *pY[i] );</em>
+<a id='L69' name='L69'></a><em class='comment'>        }</em>
+<a id='L70' name='L70'></a><em class='comment'>        </em>
+<a id='L71' name='L71'></a><em class='comment'>        division( ppQuotient , pQuotientSize , ppRemainder , pRemainderSize , pX, xSize , pY, ySize );</em>
+<a id='L72' name='L72'></a><em class='comment'>        </em>
+<a id='L73' name='L73'></a><em class='comment'>        return 0;</em>
+<a id='L74' name='L74'></a><em class='comment'>}*/</em>
+</pre>
+<hr />
+<a id='BOTTOM' name='BOTTOM'></a>
+<em class='comment'>/* [&lt;][&gt;][^]<a href='#L14'>[v]</a><a href='#TOP'>[top]</a>[bottom]<a href='../mains.html'>[index]</a><a href='../help.html'>[help]</a> */</em>
+</body>
+</html>
